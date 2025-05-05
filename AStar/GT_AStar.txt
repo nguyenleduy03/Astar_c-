@@ -1,0 +1,32 @@
+﻿1. Đặt OPEN chứa chỉ chừa T0. g(T0)=0, h’(T0)=0, f’(T0)=0. Đặt CLOSE là tập hợp rỗng.
+
+2. Lặp lại các bước sau cho đến khi giải được bài toán và dừng
+   2.a. Nếu OPEN rỗng: bài toán vô nghiệm, thoát.
+
+   2.b. Nguộc lại chọn Tmax trong OPEN sao cho f’(Tmax) là nhỏ nhất.
+
+   2.b.1. Lấy Tmax ra khỏi OPEN và đưa Tmax vào CLOSE
+   2.b.2. Nếu Tmax chính là TG thì thoát và đưa ra TG giải
+   2.b.3. Nếu Tmax không là TG. Tạo danh sách tất cả các trạng thái kế tiếp của Tmax. Gọi một trạng thái này là Tk. Với mỗi Tk, thực hiện các bước sau:
+      2.b.3.1. Tính g(Tk) = g(Tmax)+cost(Tmax,Tk)
+      2.b.3.2. Nếu g(Tk) tồn tại trong OPEN trước Tk
+         Nếu g(Tk’) < g(Tk)
+            Bắt đầu
+               g(Tk’) = g(Tk)
+               Tính f’(Tk’)
+               Cha(Tk’)=Tmax
+            Kết thúc
+         Lưu trữ Tk’ vào vị trí g, f’ cho tất cả các trạng thái Ti trong CLOSE và OPEN.
+
+      2.b.3.3. Nếu tồn tại Tk’ trong CLOSE trước Tk
+         Nếu g(Tk’) < g(Tk)
+            Bắt đầu
+               g(Tk’) = g(Tk)
+               Tính lại f’(Tk’)
+               Cha(Tk’)=Tmax
+            Kết thúc
+         Lưu trữ Tk’ vào vị trí g, f’ cho tất cả các trạng thái Ti trong CLOSE và OPEN.
+
+      2.b.3.4. Nếu Tk không có trong OPEN và CLOSE thì
+         Thêm Tk vào OPEN
+         Tính f’(Tk) = g(Tk)+h’(Tk)
